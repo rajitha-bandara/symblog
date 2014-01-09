@@ -155,6 +155,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_BloggerBlogBundle_homepage:
 
+        // BloggerBlogBundle_about
+        if ($pathinfo === '/about') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_BloggerBlogBundle_about;
+            }
+
+            return array (  '_controller' => 'Blogger\\BlogBundle\\Controller\\PageController::aboutAction',  '_route' => 'BloggerBlogBundle_about',);
+        }
+        not_BloggerBlogBundle_about:
+
+        // BloggerBlogBundle_contact
+        if ($pathinfo === '/contact') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_BloggerBlogBundle_contact;
+            }
+
+            return array (  '_controller' => 'Blogger\\BlogBundle\\Controller\\PageController::contactAction',  '_route' => 'BloggerBlogBundle_contact',);
+        }
+        not_BloggerBlogBundle_contact:
+
         if (0 === strpos($pathinfo, '/demo')) {
             if (0 === strpos($pathinfo, '/demo/secured')) {
                 if (0 === strpos($pathinfo, '/demo/secured/log')) {
